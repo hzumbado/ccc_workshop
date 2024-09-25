@@ -121,11 +121,10 @@ elevation_usa <-
 
 plot(elevation_usa)
 
-
 slope <- 
   terrain(elevation_usa, "slope", unit="radians")
 
-plot(slope)
+plot(aspect)
 
 aspect <- 
   terrain(elevation_usa, "aspect", unit="radians")
@@ -134,7 +133,6 @@ hillshade_usa <- shade(slope, aspect, 40, 270)
 
 plot(hillshade_usa, col = grey(0:100/100), legend = FALSE)
 plot(elevation_usa, col = terrain.colors(25, alpha = 0.35), add = TRUE)
-
 
 writeRaster(
   elevation_usa,
@@ -188,7 +186,8 @@ tm_shape(world) +
   tm_raster(
     title = 'Elevation (m)',
     palette = terrain.colors(500),
-    style = 'cont') +
+    style = 'cont',
+    alpha = 0.5) +
   tm_shape(
     usa_cont |>
       filter(state == 'California'), is.master = T) +

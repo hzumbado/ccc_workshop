@@ -52,8 +52,8 @@ occs <-
 
 occs_sf <- 
   occs |> 
-  filter(x < -110) |> 
-  st_as_sf(
+  filter(y < 40) |> 
+    st_as_sf(
     coords = c(
       x = 'x',
       y = 'y'),
@@ -68,16 +68,18 @@ tm_shape(occs_sf) +
 
 # map 1 -------------------------------------------------------------------
 
-tmap_mode('plot')
-# tmap_mode('view')
+#tmap_mode('plot')
+tmap_mode('view')
+
+ab_usa <- 
+  occs_sf |> 
+  st_filter(usa)
 
 abronia_usa <- 
   tm_shape(usa) +
   tm_grid(lines = FALSE) +
   tm_polygons() +
-  tm_shape(
-    occs_sf |> 
-      st_filter(usa)) +
+  tm_shape(ab_usa) +
   tm_dots(
     col = 'blue', 
     size = 0.2, 
@@ -111,7 +113,8 @@ abronia_cal <-
   tm_raster(
     title = 'Elevation (m)',
     palette = terrain.colors(500),
-    style = 'cont') +
+    style = 'cont',
+    alpha = 0.7) +
   tm_shape(
     california, is.master = T) +
   tm_borders() +
@@ -124,6 +127,7 @@ abronia_cal <-
     shape = 21) +
   tm_scale_bar(
     text.size = 0.5,
+    breaks = c(0, 100, 200),
     position = c('left', 'bottom')) +
   tm_layout(
     legend.outside = TRUE,
@@ -169,7 +173,8 @@ abronia_cv <-
   tm_raster(
     title = 'Elevation (m)',
     palette = terrain.colors(500),
-    style = 'cont') +
+    style = 'cont',
+    alpha = 0.7) +
   tm_shape(california) +
   tm_borders() +
   tm_shape(

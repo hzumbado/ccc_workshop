@@ -12,12 +12,14 @@ key <-
   name_backbone("Abronia villosa") |> 
   pull(usageKey)
 
-
 gbif_download <- 
   occ_download(
     pred("taxonKey", key),format = "SIMPLE_CSV")
 
 occ_download_wait(gbif_download)
+
+gbif_download |> 
+  write_rds('data/raw/key.rds')
 
 gbif_download |> 
   read_rds(

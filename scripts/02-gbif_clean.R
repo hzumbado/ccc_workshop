@@ -23,7 +23,7 @@ gbif_pre_clean <-
     x = decimalLongitude,
     y = decimalLatitude,
     accuracy = coordinateUncertaintyInMeters,
-    year = year, 
+    year, 
     institution = institutionCode)
 
 gbif_pre_clean2 <- 
@@ -90,7 +90,7 @@ derived_dataset_prep(
   title = 'Derived Dataset Abronia villosa',
   description = 'This dataset was filtered using CoordinateCleaner and scrubr and shows the distribution of Abronia villosa from 1980-2024',
   source_url = 'https://github.com/hzumbado/ccc_workshop/tree/main/data/processed/abronia_gbif_clean.csv',
-  gbif_download_doi = '10.15468/dl.449ysg')
+  gbif_download_doi = '10.15468/dl.cw5azu')
 
 # If output looks ok, run derived_dataset 
 
@@ -99,4 +99,4 @@ derived_dataset(
   title = 'Derived Dataset Abronia villosa',
   description = 'This dataset was filtered using CoordinateCleaner and scrubr and shows the distribution of Abronia villosa from 1980-2024',
   source_url = 'https://github.com/hzumbado/ccc_workshop/tree/main/data/processed/abronia_gbif_clean.csv',
-  gbif_download_doi = '10.15468/dl.449ysg')
+  gbif_download_doi = '10.15468/dl.cw5azu')
